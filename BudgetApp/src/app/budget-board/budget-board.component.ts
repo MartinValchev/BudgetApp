@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BudgetNote } from '../model/BudgetNote';
+import { NotesService } from '../note.service';
 
 @Component({
   selector: 'app-budget-board',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BudgetBoardComponent implements OnInit {
 
-  constructor() { }
+  notes: Array<BudgetNote> | undefined;
+
+  constructor(private noteService: NotesService, private router: Router) { }
 
   ngOnInit(): void {
+    this.notes = this.noteService.getBudgetNotes();
+  }
+
+  handleNoteThumbnailClick(id: number | undefined) {
+    this.router.navigate(['note', 'detail', id])
+
   }
 
 }

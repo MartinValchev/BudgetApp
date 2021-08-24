@@ -1,1 +1,11 @@
-<p>budget-board works!</p>
+<div>
+  <h1>Current budget notes</h1>
+  <hr />
+  <div class="row">
+    <div class="col-md-5" *ngFor='let note of notes'>
+      <div class="col-md-5">
+        <note-thumbnail [note] ='note' (click)="handleNoteThumbnailClick(note.id)"></note-thumbnail>
+      </div>
+    </div>
+  </div>
+</div>

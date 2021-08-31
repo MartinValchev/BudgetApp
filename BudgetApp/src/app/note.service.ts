@@ -1,5 +1,8 @@
+import { Injectable } from "@angular/core";
+import { OnInit } from "@angular/core";
 import { BudgetNote, BudgetNoteType } from "./model/BudgetNote";
 
+@Injectable()
 export class NotesService {
 
   note1: BudgetNote | undefined;
@@ -7,6 +10,7 @@ export class NotesService {
   note3: BudgetNote | undefined;
 
   noteElements: Array<BudgetNote> | undefined;
+
   constructor() {
 
   }
@@ -41,5 +45,12 @@ export class NotesService {
     this.noteElements.push(this.note2);
     this.noteElements.push(this.note3);
     return this.noteElements;
+  }
+
+  getNoteById(id: number) {
+    this.noteElements = this.getBudgetNotes();
+    console.log('------------------')
+    console.log(this.noteElements.find(n => n.id === id))
+    return this.noteElements.find(n => n.id === id);
   }
 }

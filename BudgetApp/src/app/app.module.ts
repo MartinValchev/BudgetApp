@@ -7,6 +7,12 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { NoteThumbnailComponent } from './budget-note/note-thumbnail.component';
 import { NotesService } from './note.service';
 import { BudgetNoteDetailComponent } from './budget-note-detail/budget-note-detail.component';
+import { Error404Component } from './error404/error404.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
+import { NotesRouteService } from './notes-rooute.service';
+import { CreateNoteComponent } from './create/create-note/create-note.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,12 +20,16 @@ import { BudgetNoteDetailComponent } from './budget-note-detail/budget-note-deta
     BudgetBoardComponent,
     NavigationComponent,
     NoteThumbnailComponent,
-    BudgetNoteDetailComponent
+    BudgetNoteDetailComponent,
+    Error404Component,
+    CreateNoteComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
-  providers: [NotesService],
+  providers: [NotesService, NotesRouteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

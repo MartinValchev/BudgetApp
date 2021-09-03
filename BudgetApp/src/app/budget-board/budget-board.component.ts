@@ -19,7 +19,7 @@ export class BudgetBoardComponent implements OnInit {
   }
 
   handleNoteThumbnailClick(id: number | undefined) {
-    this.router.navigate(['note', 'detail', id])
+    this.router.navigate(['note'  , id])
 
   }
 

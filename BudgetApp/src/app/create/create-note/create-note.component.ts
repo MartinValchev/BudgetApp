@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { BudgetNote } from 'src/app/model/BudgetNote';
+import { NotesService } from 'src/app/note.service';
 
 @Component({
   selector: 'app-create-note',
@@ -10,7 +13,8 @@ export class CreateNoteComponent implements OnInit {
 
   noteForm !: FormGroup;
 
-  constructor() { }
+  constructor(private notesService: NotesService, private router: Router) {
+   }
 
   ngOnInit(): void {
     let noteName = new FormControl();
@@ -25,11 +29,22 @@ export class CreateNoteComponent implements OnInit {
       noteDate: noteDate,
       noteDescription: noteDescription
     });
+
   }
 
-  //    this.note3.name = 'Avans zaplata';
-  // this.note3.type = BudgetNoteType.Income;
-  // this.note3.amount = 550;
-  // this.note3.date = new Date();
-  // this.note3.description = 'avans do zaplat';
+  onNoteSubmit() {
+    let newNote = new BudgetNote();
+    newNote.id = this.notesService.getLastNoteIndex() + 1;
+    newNote.name = this.noteForm.get('noteName')?.value;
+    newNote.type = this.noteForm.get('noteType')?.value;
+    newNote.amount = this.noteForm.get('noteAmount')?.value;
+    newNote.date = this.noteForm.get('noteDate')?.value;
+    newNote.description = this.noteForm.get('noteDescription')?.value
+    this.notesService.noteElements.push(newNote);
+    this.router.navigate(['notes']);
+  }
+
+  onCancelForm() {
+    this.router.navigate(['notes'])
+  }
 }

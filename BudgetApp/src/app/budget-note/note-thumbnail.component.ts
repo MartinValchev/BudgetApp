@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BudgetNote, BudgetNoteType } from '../model/BudgetNote';
+import { NotesService } from '../note.service';
 
 @Component({
   selector: 'note-thumbnail',
@@ -11,9 +12,13 @@ export class NoteThumbnailComponent implements OnInit {
   @Input() note: BudgetNote | undefined
   id: number | undefined;
 
-  constructor() { }
+  constructor(private notesService: NotesService) { }
 
   ngOnInit(): void {
+  }
+
+  handleDeleteNote() {
+    this.notesService.noteElements = this.notesService.getBudgetNotes().filter(note => this.note?.id === this.id)
   }
 
 }

@@ -9,10 +9,9 @@ export class NotesService {
   note2: BudgetNote | undefined;
   note3: BudgetNote | undefined;
 
-  noteElements: Array<BudgetNote> | undefined;
+  noteElements = new Array<BudgetNote>();
 
   constructor() {
-
   }
 
   getBudgetNotes() {
@@ -40,7 +39,6 @@ export class NotesService {
     this.note3.date = new Date();
     this.note3.description = 'avans do zaplat';
 
-    this.noteElements = new Array<BudgetNote>();
     this.noteElements.push(this.note1);
     this.noteElements.push(this.note2);
     this.noteElements.push(this.note3);
@@ -52,5 +50,9 @@ export class NotesService {
     console.log('------------------')
     console.log(this.noteElements.find(n => n.id === id))
     return this.noteElements.find(n => n.id === id);
+  }
+
+  getLastNoteIndex() {
+    return this.noteElements.length;
   }
 }

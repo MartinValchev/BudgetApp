@@ -13,6 +13,7 @@ import { routes } from './routes';
 import { NotesRouteService } from './notes-rooute.service';
 import { CreateNoteComponent } from './create/create-note/create-note.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BudgetBalanceComponent } from './budget-balance/budget-balance.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NoteThumbnailComponent,
     BudgetNoteDetailComponent,
     Error404Component,
-    CreateNoteComponent
+    CreateNoteComponent,
+    BudgetBalanceComponent
   ],
   imports: [
     BrowserModule,

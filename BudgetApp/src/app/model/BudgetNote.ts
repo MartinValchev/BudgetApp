@@ -2,7 +2,7 @@ export class BudgetNote {
   id: number | undefined;
   name: string | undefined;
   type: BudgetNoteType | undefined;
-  amount: number | undefined;
+  amount = 0;
   date: Date = new Date();
   description: string| undefined;
 }
